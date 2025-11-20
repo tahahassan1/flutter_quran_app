@@ -32,6 +32,7 @@ class TabletSectionsItem extends StatelessWidget {
           case AppSection.prayersTime:
             context.push(const PrayerTimesScreen());
             return;
+          
           case AppSection.qiblah:
             context.push(const QiblahScreen());
             return;

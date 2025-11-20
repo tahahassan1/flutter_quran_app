@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quran_app/core/di/di.dart';
 import 'package:flutter_quran_app/core/networking/dio_consumer.dart';
 import 'package:flutter_quran_app/features/quran_reciters/data/models/reciter_model.dart';
+
 import '../../../../core/networking/api_keys.dart';
 import '../../data/models/surah_audio_model.dart';
 
@@ -21,7 +22,7 @@ class QuranAudioCubit extends Cubit<QuranState> {
         '${reciter.moshafList[0].server}/$qareeId',
       );
 
-      List quranAsMaps = response[ApiKeys.audioFiles];
+      List quranAsMaps = response.data['data'][ApiKeys.audioFiles];
 
       quran = quranAsMaps.map((e) => SurahAudioModel.fromJson(e)).toList();
 

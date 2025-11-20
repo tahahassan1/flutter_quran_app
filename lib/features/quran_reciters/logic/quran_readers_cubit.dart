@@ -35,7 +35,7 @@ class QuranReadersCubit extends Cubit<QuranReadersState> {
         ApiKeys.recitersBaseUrl,
         queryParameters: {'language': 'ar'},
       );
-      final List recitersList = response[ApiKeys.reciters];
+      final List recitersList = response.data[ApiKeys.reciters];
       reciters =
           recitersList.map((qaree) => ReciterModel.fromJson(qaree)).toList();
 

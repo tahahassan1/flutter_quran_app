@@ -1,10 +1,7 @@
-import 'package:flutter_quran_app/core/app_constants.dart';
-import 'package:flutter_quran_app/core/services/cache_service.dart';
 import 'package:flutter_quran_app/features/prayer_times/data/models/prayer_times_model.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/di/di.dart';
-import '../../../../core/networking/api_keys.dart';
 import '../../../../core/networking/dio_consumer.dart';
 import '../../../../core/services/prayer_times_cache.dart';
 import '../models/user_location_model.dart';
@@ -12,80 +9,28 @@ import '../models/user_location_model.dart';
 class PrayerTimesRepo {
   // PrayerTimesResponseModel? _lastFetched;
 
-  Future<PrayerTimesResponseModel> getByCity(UserLocationModel location) async {
-    getIt<CacheService>().setString(
-      AppConsts.locationMethod,
-      AppConsts.byCity,
-    );
-
-    final now = DateTime.now();
-    final dayKey = DateFormat('dd-MM-yyyy').format(now);
-    var response = await getIt<DioConsumer>().get(
-      '${ApiKeys.prayerTimesByCityBaseUrl}/$dayKey',
-      headers: {'content-type': 'application/json'},
-      queryParameters: {
-        ApiKeys.country: location.country,
-        ApiKeys.city: location.city,
-        ApiKeys.method: location.method,
-      },
-    );
-    // getIt<CacheService>().setString(
-    //   AppConsts.country,
-    //   location.country,
-    // );
-    // getIt<CacheService>().setString(
-    //   AppConsts.city,
-    //   location.city,
-    // );
-
-    final data = response['data'] as Map<String, dynamic>;
-    await cachePrayerTimes(data, address: location.address);
-
-    final model = PrayerTimesResponseModel.fromJson(
-      data,
-      location: location,
-    );
-    // _lastFetched = model;
-    // Fire-and-forget scheduling (doesn't block fetch)
-    // ignore: unawaited_futures
-    // scheduleNotifications();
-    return model;
-  }
-
-  Future<PrayerTimesResponseModel> getByAddress(
+  Future<PrayerTimesResponseModel> getBasicPrayerTimes(
     UserLocationModel location,
   ) async {
-    // getIt<CacheService>().setString(
-    //   AppConsts.locationMethod,
-    //   AppConsts.byAddress,
-    // );
-
     final now = DateTime.now();
     final dayKey = DateFormat('dd-MM-yyyy').format(now);
     var response = await getIt<DioConsumer>().get(
-      '${ApiKeys.prayerTimesByAddressBaseUrl}/$dayKey',
+      'http://api.aladhan.com/v1/timings/$dayKey',
       headers: {'content-type': 'application/json'},
       queryParameters: {
-        ApiKeys.address: location.address,
-        ApiKeys.method: location.method,
+        'latitude': location.position.latitude.toString(),
+        'longitude': location.position.longitude.toString(),
       },
     );
-    // getIt<CacheService>().setString(
-    //   AppConsts.address,
-    //   location.address,
-    // );
-    final data = response['data'] as Map<String, dynamic>;
 
+    final data = response.data['data'] as Map<String, dynamic>;
     await cachePrayerTimes(data, address: location.address);
 
     final model = PrayerTimesResponseModel.fromJson(
       data,
       location: location,
     );
-    // _lastFetched = model;
-    // Fire-and-forget scheduling (doesn't block fetch)
-    // ignore: unawaited_futures
-    // scheduleNotifications();
+
     return model;
   }
 

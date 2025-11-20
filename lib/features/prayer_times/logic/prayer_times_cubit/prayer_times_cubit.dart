@@ -12,25 +12,34 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
   PrayerTimesCubit(this._repo) : super(PrayerTimesInitial()) {
     getPrayerTimes();
   }
+
   final PrayerTimesRepo _repo;
+
   PrayerTimesResponseModel? prayers;
 
   Future<UserLocationModel?> getUserLocation() async {
     try {
+      await GeocodingPlatform.instance!.setLocaleIdentifier('en');
+
       Position position = await Geolocator.getCurrentPosition(
         locationSettings: const LocationSettings(
           accuracy: LocationAccuracy.high,
         ),
       );
 
-      GeocodingPlatform.instance!.setLocaleIdentifier('en');
-
       List<Placemark> placemarks = await placemarkFromCoordinates(
         position.latitude,
         position.longitude,
       );
 
-      Placemark place = placemarks.first;
+      await GeocodingPlatform.instance!.setLocaleIdentifier('ar');
+
+      List<Placemark> arabicPlacemarks = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
+
+      Placemark place = placemarks.last;
       String? address = place.street;
 
       if (place.isoCountryCode == 'EG') {
@@ -41,15 +50,10 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
             '${place.subAdministrativeArea ?? place.locality}, ${place.administrativeArea ?? place.locality}, ${place.country}';
       }
 
-      GeocodingPlatform.instance!.setLocaleIdentifier('ar');
-
-      List<Placemark> arabicPlacemarks = await placemarkFromCoordinates(
-        position.latitude,
-        position.longitude,
-      );
-
       return UserLocationModel(
-        arabicAddress: arabicPlacemarks.first.street!,
+        position: position,
+        arabicAddress: arabicPlacemarks.last.street ??
+            '${arabicPlacemarks.last.country} - ${arabicPlacemarks.last.locality}',
         address: address!,
         country: place.country!,
         city: place.administrativeArea ?? place.locality!,
@@ -68,7 +72,9 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
 
   Future<void> getPrayerTimes() async {
     emit(PrayerTimesLoading());
+
     UserLocationModel? location = await getUserLocation();
+
     if (location == null) {
       emit(
         PrayerTimesFailure(
@@ -86,17 +92,13 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
     }
 
     try {
-      if (location.isoCode == 'EG') {
-        prayers = await _repo.getByCity(location);
-      } else {
-        prayers = await _repo.getByAddress(location);
-      }
+      prayers = await _repo.getBasicPrayerTimes(location);
       emit(PrayerTimesSuccess());
     } catch (e) {
       emit(
         PrayerTimesFailure(
           errMessage:
-              'حدث خطأ ما يرجى التأكد من الاتصال بالانترنت: ${e.toString()}',
+              ' حدث خطأ ما يرجى التأكد من الاتصال بالانترنت: ${e.toString()}',
         ),
       );
     }

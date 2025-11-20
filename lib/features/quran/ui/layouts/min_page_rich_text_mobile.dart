@@ -70,7 +70,7 @@ class _MobileMinPageRichTextState extends State<MobileMinPageRichText> {
         n == 589 ||
         n == 590) {
       return 21.8.sp;
-    } else if (n == 38) {
+    } else if (n == 38 ) {
       return 22.5.sp;
     } else if (n == 8 || n == 241) {
       return 22.4.sp;

@@ -41,16 +41,10 @@ class _MobileFullPageRichTextState extends State<MobileFullPageRichText> {
 
     if (n <= 2) {
       return 26.sp;
-    } else if (n == 145) {
-      return 22.4.sp;
-    } else if (n == 532) {
-      return 22.5.sp;
-    } else if (n == 566 || n == 600 || n == 593) {
-      return 22.1.sp;
     } else if (n == 574 || n == 579 || n == 585) {
       return 21.9.sp;
-    } else if (n == 577 || n == 578 || n == 583) {
-      return 21.35.sp;
+    } else if (n == 566 || n == 600 || n == 593) {
+      return 22.1.sp;
     } else if (n == 567 ||
         n == 568 ||
         n == 569 ||
@@ -59,12 +53,24 @@ class _MobileFullPageRichTextState extends State<MobileFullPageRichText> {
         n == 589 ||
         n == 590) {
       return 21.8.sp;
-    } else if (n == 38) {
-      return 22.5.sp;
-    } else if (n == 8 || n == 241) {
-      return 22.4.sp;
-    } else if (n == 33 || n == 238 || n == 240 || n == 243 || n == 509) {
+    } else if (n == 69 || n == 70) {
+      return 22.7.sp;
+    } else if (n == 145 ||
+        n == 8 ||
+        n == 33 ||
+        n == 238 ||
+        n == 240 ||
+        n == 243 ||
+        n == 509 ||
+        n == 32 ||
+        n == 38) {
       return 22.6.sp;
+    } else if (n == 532 || n == 53 || n == 58) {
+      return 22.5.sp;
+    } else if (n == 241 || n == 11 || n == 17 || n == 19) {
+      return 22.4.sp;
+    } else if (n == 577 || n == 578 || n == 583) {
+      return 21.35.sp;
     } else {
       return 22.28.sp;
     }

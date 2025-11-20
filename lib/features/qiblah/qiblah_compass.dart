@@ -3,7 +3,6 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/theme.dart';
@@ -13,6 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:lottie/lottie.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:vibration/vibration.dart';
 
 import '../../core/helpers/alert_helper.dart';
 import '../../core/theme/app_assets.dart';
@@ -182,9 +182,11 @@ class _QiblahCompassState extends State<QiblahCompass>
             final isAligned = normalizedAngle <= _alignmentThreshold;
 
             // Vibrate when entering the aligned zone (use post-frame callback to avoid build issues)
-            WidgetsBinding.instance.addPostFrameCallback((_) {
+            WidgetsBinding.instance.addPostFrameCallback((_) async {
               if (isAligned && !_wasAligned) {
-                HapticFeedback.heavyImpact();
+                if (await Vibration.hasVibrator()) {
+                  Vibration.vibrate();
+                }
                 if (mounted) {
                   setState(() {
                     _wasAligned = true;

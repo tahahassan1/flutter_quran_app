@@ -4,7 +4,7 @@ import 'package:flutter_quran_app/core/theme/app_assets.dart';
 import 'package:flutter_quran_app/core/theme/app_styles.dart';
 import 'package:flutter_quran_app/features/quran/ui/quran_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:vector_graphics/vector_graphics.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import '../../../azkar/ui/azkar_sections_screen.dart';
@@ -38,6 +38,7 @@ class MobileSectionsItem extends StatelessWidget {
             context.push(const PrayerTimesScreen(),
                 direction: NavigationDirection.downToUp);
             return;
+
           case AppSection.qiblah:
             context.push(const QiblahScreen(),
                 direction: NavigationDirection.downToUp);
@@ -64,14 +65,14 @@ class MobileSectionsItem extends StatelessWidget {
             const Spacer(),
             Text(
               section.title,
-              style: AppStyles.style28l,
+              style: AppStyles.style28l.copyWith(color: Colors.white),
             ),
             const Spacer(),
-            SvgPicture.asset(
-              section.icon,
-              fit: BoxFit.scaleDown,
+            VectorGraphic(
+              loader: AssetBytesLoader(section.icon),
               width: 80.w,
-            ),
+              fit: BoxFit.scaleDown,
+            )
           ],
         ),
       ),
