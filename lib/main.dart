@@ -23,7 +23,7 @@ void main() async {
   final bool showCustomSplash = await isAndroid12Plus();
 
   runApp(
-    MultiBlocProvider(  
+    MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => QuranPlayerCubit()),
         BlocProvider(create: (_) => ThemeCubit()),
@@ -32,10 +32,4 @@ void main() async {
       child: QuranApp(showCustomSplash: showCustomSplash),
     ),
   );
-
-  //TODO: App Bundle -> app.tahahassan.quran_app
-  //TODO: TEST App Bundle -> test_app.tahahassan.quran_app
-  //TODO: iPhone layouts
 }
-
-//TODO: iPhone 11 Pro Max, 16 Pro, 16,15 Pro,13, 13 mini, 12 mini

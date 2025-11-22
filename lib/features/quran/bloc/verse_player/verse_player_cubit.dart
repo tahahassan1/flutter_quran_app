@@ -25,7 +25,6 @@ class VersePlayerCubit extends Cubit<VersePlayerState> {
   String? reciter;
 
   void init() async {
-    //TODO:
     reciter = await getIt<CacheService>().getString('reciter');
   }
 
