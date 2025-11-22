@@ -1,4 +1,5 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../core/theme/app_styles.dart';
@@ -14,7 +15,12 @@ class AlertHelper {
       type: ToastificationType.warning,
       direction: TextDirection.rtl,
       autoCloseDuration: const Duration(seconds: 3),
-      title: Text(message, style: AppStyles.style20),
+      title: Text(
+        message,
+        style: context.isTablet
+            ? AppStyles.style14harmattan.copyWith(color: Colors.black)
+            : AppStyles.style20,
+      ),
     );
   }
 
@@ -25,7 +31,12 @@ class AlertHelper {
       type: ToastificationType.error,
       direction: TextDirection.rtl,
       autoCloseDuration: const Duration(seconds: 3),
-      title: Text(message, style: AppStyles.style20),
+      title: Text(
+        message,
+        style: context.isTablet
+            ? AppStyles.style14harmattan.copyWith(color: Colors.black)
+            : AppStyles.style20,
+      ),
     );
   }
 
@@ -39,7 +50,12 @@ class AlertHelper {
       type: ToastificationType.success,
       direction: TextDirection.rtl,
       autoCloseDuration: const Duration(seconds: 2),
-      title: Text(message, style: AppStyles.style20),
+      title: Text(
+        message,
+        style: context.isTablet
+            ? AppStyles.style14harmattan.copyWith(color: Colors.black)
+            : AppStyles.style20,
+      ),
     );
   }
 }

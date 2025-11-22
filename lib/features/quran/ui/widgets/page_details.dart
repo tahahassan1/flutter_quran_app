@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/int_extensions.dart';
+import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quran/quran.dart';
 
-class FullPageDetailsMobile extends StatelessWidget {
-  const FullPageDetailsMobile(
-      {super.key, required this.surahNumber, required this.firstVerse});
+class FullPageDetails extends StatelessWidget {
+  const FullPageDetails({
+    super.key,
+    required this.surahNumber,
+    required this.firstVerse,
+  });
   final int surahNumber, firstVerse;
 
   @override
@@ -15,11 +20,15 @@ class FullPageDetailsMobile extends StatelessWidget {
       children: [
         Text(
           getJuzNumber(surahNumber, firstVerse).toJuzName,
-          style: context.labelSmall,
+          style: context.labelSmall.copyWith(
+            fontSize: context.isTablet ? 20.sp : null,
+          ),
         ),
         Text(
           'سورة ${getSurahNameArabic(surahNumber)}',
-          style: context.labelSmall,
+          style: context.labelSmall.copyWith(
+            fontSize: context.isTablet ? 20.sp : null,
+          ),
         ),
       ],
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quran/quran.dart';
@@ -31,7 +32,9 @@ class FullHeaderWidget extends StatelessWidget {
                   child: Text(
                     textAlign: TextAlign.center,
                     getSurahNameArabic(surahNumber),
-                    style: context.headlineMedium,
+                    style: context.headlineMedium.copyWith(
+                      fontSize: context.isTablet ? 20.sp : null,
+                    ),
                   ),
                 ),
               ],

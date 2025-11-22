@@ -1,9 +1,5 @@
 library quran;
 
-// import 'package:quran/tafseers/jalalayn.dart';
-// import 'package:quran/tafseers/muyassar.dart';
-import 'dart:developer';
-
 import 'package:dartarabic/dartarabic.dart';
 import 'package:quran/quran_text_normal.dart';
 import 'package:quran/reciters.dart';
@@ -234,10 +230,7 @@ String getVerseQCF(int surahNumber, int verseNumber,
       break;
     }
   }
-  if (surahNumber == 1 && verseNumber == 7) {
-    log(verse);
-  }
- 
+
   if (verse == "") {
     throw "No verse found with given surahNumber and verseNumber.\n\n";
   }

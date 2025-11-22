@@ -109,6 +109,7 @@ class _MobileSurahVersesWidgetState extends State<MobileSurahVersesWidget> {
 
   List<InlineSpan> _buildSpans(BuildContext context) {
     bool detailsAdded = false;
+    bool addDetails = true;
     // final data = getPageData(widget.pageNumber);
     // int surahNumber = data.first['surah'];
 
@@ -122,6 +123,7 @@ class _MobileSurahVersesWidgetState extends State<MobileSurahVersesWidget> {
 
       for (var i = e["start"]; i <= e["end"]; i++) {
         if (i == 1) {
+          addDetails = false;
           spans.add(
             WidgetSpan(
               child: widget.isFullPage
@@ -192,13 +194,15 @@ class _MobileSurahVersesWidgetState extends State<MobileSurahVersesWidget> {
           ),
         );
       }
-      if (widget.isFullPage && widget.pageNumber > 2 && !detailsAdded) {
+      if (widget.isFullPage &&
+          widget.pageNumber > 2 &&
+          !detailsAdded & addDetails) {
         spans.insert(
           0,
           WidgetSpan(
             child: Padding(
               padding: EdgeInsets.only(bottom: 4.h),
-              child: FullPageDetailsMobile(
+              child: FullPageDetails(
                 surahNumber: e["surah"],
                 firstVerse: e["start"],
               ),
@@ -225,7 +229,6 @@ class _MobileSurahVersesWidgetState extends State<MobileSurahVersesWidget> {
           if (widget.pageNumber > 2)
             TextSpan(
               children: [
-                //const WidgetSpan(child: SizedBox(height: 8)),
                 TextSpan(
                   text: '\n${widget.pageNumber.toArabicNums}',
                   style: context.titleSmall.copyWith(

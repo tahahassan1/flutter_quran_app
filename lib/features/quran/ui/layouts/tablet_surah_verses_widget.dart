@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -111,22 +110,22 @@ class _TabletSurahVersesWidgetState extends State<TabletSurahVersesWidget> {
 
   List<InlineSpan> _buildSpans(BuildContext context) {
     bool detailsAdded = false;
+    bool addDetails = true;
     // final data = getPageData(widget.pageNumber);
     // int surahNumber = data.first['surah'];
 
     final double height = (widget.pageNumber == 1 || widget.pageNumber == 2)
         ? 2
         : widget.isFullPage
-            ? 1.76
+            ? 1.768
             : 1.78;
 
     return getPageData(widget.pageNumber).expand((e) {
       final List<InlineSpan> spans = [];
 
-      // spans.add(detailsSpan);
-
       for (var i = e["start"]; i <= e["end"]; i++) {
         if (i == 1) {
+          addDetails = false;
           spans.add(
             WidgetSpan(
               child: widget.isFullPage
@@ -135,7 +134,6 @@ class _TabletSurahVersesWidgetState extends State<TabletSurahVersesWidget> {
             ),
           );
 
-          // spans.remove(detailsSpan);
           if (widget.pageNumber != 187 && widget.pageNumber != 1) {
             spans.add(
                 WidgetSpan(child: TabletBasmallah(isFull: widget.isFullPage)));
@@ -163,7 +161,6 @@ class _TabletSurahVersesWidgetState extends State<TabletSurahVersesWidget> {
                 setState(() {
                   selectedVerse = text;
                   _usePropHighlight = false;
-                  log('text $text');
                 });
                 final future = showModalBottomSheet(
                   barrierColor: Colors.black38,
@@ -202,13 +199,16 @@ class _TabletSurahVersesWidgetState extends State<TabletSurahVersesWidget> {
           ),
         );
       }
-      if (widget.isFullPage && widget.pageNumber > 2 && !detailsAdded) {
+      if (widget.isFullPage &&
+          widget.pageNumber > 2 &&
+          !detailsAdded &&
+          addDetails) {
         spans.insert(
           0,
           WidgetSpan(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              child: FullPageDetailsMobile(
+              padding: EdgeInsets.only(bottom: 6.h),
+              child: FullPageDetails(
                 surahNumber: e["surah"],
                 firstVerse: e["start"],
               ),

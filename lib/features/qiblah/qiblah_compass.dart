@@ -1,13 +1,10 @@
-// ignore_for_file: unused_import
 import 'dart:async';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/theme.dart';
 import 'package:flutter_quran_app/core/theme/app_colors.dart';
-// import 'package:flutter_quran_app/core/helpers/extensions/theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:lottie/lottie.dart';
@@ -36,8 +33,7 @@ class _QiblahCompassState extends State<QiblahCompass>
   bool serviceEnabled = true;
   bool permissionPermanentlyDenied = false;
   bool _wasAligned = false;
-  static const double _alignmentThreshold =
-      10.0; // degrees - increased for easier detection
+  static const double _alignmentThreshold = 10.0;
 
   Future<void> _refreshStatus() async {
     final service = await Permission.location.serviceStatus.isEnabled;

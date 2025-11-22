@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quran_app/core/di/di.dart';
@@ -41,7 +39,7 @@ class QuranReadersCubit extends Cubit<QuranReadersState> {
 
       emit(QuranReadersSuccess(reciters: reciters));
     } catch (e) {
-      log(e.toString());
+      // log(e.toString());
       emit(
         QuranReadersFailure(errMessage: 'يرجى التحقق من الإنترنت'),
       );

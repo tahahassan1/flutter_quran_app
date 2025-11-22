@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -84,9 +83,9 @@ class QuranPlayerCubit extends Cubit<QuranPlayerState> {
   }
 
   void handlePlayPause() async {
-    if (player.playerState.processingState == ProcessingState.completed) {
-      log('ProcessingState.completed');
-    }
+    // if (player.playerState.processingState == ProcessingState.completed) {
+    //   log('ProcessingState.completed');
+    // }
     if (player.playing) {
       player.pause();
     } else {
