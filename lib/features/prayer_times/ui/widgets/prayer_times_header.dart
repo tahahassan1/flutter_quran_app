@@ -30,8 +30,7 @@ class PrayerTimesHeader extends StatelessWidget {
               width: context.screenWidth * .4,
               fit: BoxFit.cover,
             ),
-            
-          )
+          ),
         ],
       ),
     );

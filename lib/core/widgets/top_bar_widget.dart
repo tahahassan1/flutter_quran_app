@@ -9,7 +9,12 @@ class TopBar extends StatelessWidget {
   final double height;
   final String? label, image;
 
-  const TopBar({super.key, required this.height, this.label, this.image});
+  const TopBar({
+    super.key,
+    required this.height,
+    this.label,
+    this.image,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -64,11 +69,11 @@ class _CurvedUpperClipper extends CustomClipper<Path> {
     // Create the upward curve at the bottom using quadratic bezier
     // The curve goes UP (concave)
     path.quadraticBezierTo(
-        size.width / 2, // Control point X (center)
-        size.height - 120, // Control point Y (curves upward)
-        0, // End point X (left edge)
-        size.height - 20 // End point Y
-        );
+      size.width / 2, // Control point X (center)
+      size.height - 120, // Control point Y (curves upward)
+      0, // End point X (left edge)
+      size.height - 20, // End point Y
+    );
 
     // Close the path back to start
     path.close();

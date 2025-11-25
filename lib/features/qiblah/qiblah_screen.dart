@@ -24,7 +24,10 @@ class QiblahScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                TopBar(height: 280.h, label: 'القبلة'),
+                TopBar(
+                  height: 280.h,
+                  label: 'القبلة',
+                ),
                 const Spacer(),
                 const QiblahCompass(),
                 const Spacer(),

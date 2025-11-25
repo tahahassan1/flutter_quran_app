@@ -25,7 +25,10 @@ class AzkarSectionsScreen extends StatelessWidget {
             Column(
               spacing: 30.h,
               children: [
-                TopBar(height: 280.h, label: 'الأذكار'),
+                TopBar(
+                  height: 280.h,
+                  label: 'الأذكار',
+                ),
                 Expanded(
                   child: ListView.separated(
                     physics: const BouncingScrollPhysics(),
@@ -40,7 +43,7 @@ class AzkarSectionsScreen extends StatelessWidget {
                     },
                     separatorBuilder: (_, __) => SizedBox(height: 20.h),
                   ),
-                )
+                ),
               ],
             ),
           ],
@@ -52,14 +55,8 @@ class AzkarSectionsScreen extends StatelessWidget {
 //         context.push(AzkarScreen(section: sections[index]));
 
 enum AzkarSection {
-  morning(
-    icon: AppAssets.svgsSunIcon,
-    title: 'أذكار الصباح',
-  ),
-  evening(
-    icon: AppAssets.svgsMoonIcon,
-    title: 'أذكار المساء',
-  );
+  morning(icon: AppAssets.svgsSunIcon, title: 'أذكار الصباح'),
+  evening(icon: AppAssets.svgsMoonIcon, title: 'أذكار المساء');
 
   final String icon, title;
 

@@ -22,6 +22,7 @@ class ReadersListView extends StatelessWidget {
         ),
       ),
       child: CustomScrollView(
+        cacheExtent: 600,
         physics: const ClampingScrollPhysics(),
         slivers: [
           SliverToBoxAdapter(
@@ -29,9 +30,12 @@ class ReadersListView extends StatelessWidget {
               height: 280.h,
               child: Stack(
                 children: [
-                  TopBar(height: 260.h, label: 'القـــراء'),
+                  TopBar(
+                    height: 260.h,
+                    label: 'القـــراء',
+                  ),
                   Positioned.fill(
-                    top: context.isTablet ? 205.h : 185.h,
+                    top: context.isTablet ? 215.h : 190.h,
                     child: const Align(
                       alignment: Alignment.topCenter,
                       child: RecitersSearchBar(),
@@ -43,14 +47,19 @@ class ReadersListView extends StatelessWidget {
           ),
           if (context.isTablet)
             const SliverToBoxAdapter(child: SizedBox(height: 20)),
-          SliverList.separated(
-            itemCount: reciters.length,
-            itemBuilder: (context, index) {
-              return ReciterWidget(reciter: reciters[index]);
-            },
-            separatorBuilder: (_, __) => const SizedBox(height: 30),
+          SliverPrototypeExtentList(
+            prototypeItem: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ReciterWidget(reciter: reciters[0]),
+            ),
+            delegate: SliverChildBuilderDelegate(
+              childCount: reciters.length,
+              (context, index) => Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: ReciterWidget(reciter: reciters[index]),
+              ),
+            ),
           ),
-          const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
       ),
     );

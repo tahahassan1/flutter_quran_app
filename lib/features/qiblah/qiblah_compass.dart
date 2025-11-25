@@ -209,7 +209,7 @@ class _QiblahCompassState extends State<QiblahCompass>
               child: Stack(
                 children: [
                   Positioned.fill(
-                    bottom: context.isTablet ? 160.h : 240.h,
+                    bottom: context.isTablet ? 160.h : 270.h,
                     child: Align(
                       alignment: Alignment.center,
                       child: Icon(

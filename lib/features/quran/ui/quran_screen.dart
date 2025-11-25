@@ -44,6 +44,10 @@ class _QuranScreenState extends State<QuranScreen> {
   @override
   void dispose() {
     WakelockPlus.disable();
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: SystemUiOverlay.values,
+    );
     super.dispose();
   }
 

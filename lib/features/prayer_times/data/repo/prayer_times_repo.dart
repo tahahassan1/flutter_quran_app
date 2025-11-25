@@ -1,5 +1,7 @@
-import 'package:flutter_quran_app/features/prayer_times/data/models/prayer_times_model.dart';
 import 'package:intl/intl.dart';
+
+import 'package:flutter_quran_app/core/networking/api_keys.dart';
+import 'package:flutter_quran_app/features/prayer_times/data/models/prayer_times_model.dart';
 
 import '../../../../core/di/di.dart';
 import '../../../../core/networking/dio_consumer.dart';
@@ -7,15 +9,13 @@ import '../../../../core/services/prayer_times_cache.dart';
 import '../models/user_location_model.dart';
 
 class PrayerTimesRepo {
-  // PrayerTimesResponseModel? _lastFetched;
-
   Future<PrayerTimesResponseModel> getBasicPrayerTimes(
     UserLocationModel location,
   ) async {
     final now = DateTime.now();
     final dayKey = DateFormat('dd-MM-yyyy').format(now);
     var response = await getIt<DioConsumer>().get(
-      'http://api.aladhan.com/v1/timings/$dayKey',
+      '${ApiKeys.prayerTimesBaseUrl}/$dayKey',
       headers: {'content-type': 'application/json'},
       queryParameters: {
         'latitude': location.position.latitude.toString(),
@@ -26,10 +26,7 @@ class PrayerTimesRepo {
     final data = response.data['data'] as Map<String, dynamic>;
     await cachePrayerTimes(data, address: location.address);
 
-    final model = PrayerTimesResponseModel.fromJson(
-      data,
-      location: location,
-    );
+    final model = PrayerTimesResponseModel.fromJson(data, location: location);
 
     return model;
   }
@@ -58,10 +55,7 @@ class PrayerTimesRepo {
       final timings = cached['timings'] as Map<String, dynamic>?;
       final date = cached['date'] as Map<String, dynamic>?;
       if (timings == null || date == null) return null;
-      final modelJson = {
-        'timings': timings,
-        'date': date,
-      };
+      final modelJson = {'timings': timings, 'date': date};
       return PrayerTimesResponseModel.fromJson(modelJson, location: location);
     } catch (_) {
       return null;

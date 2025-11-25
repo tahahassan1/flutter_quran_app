@@ -31,7 +31,6 @@ class QuranListView extends StatelessWidget {
           );
         } else if (snapshot.hasData) {
           return ListView.separated(
-            
             padding: const EdgeInsets.symmetric(vertical: 100),
             itemCount: cubit.reciter.moshafList[0].surahTotal,
             itemBuilder: (context, index) {

@@ -10,10 +10,7 @@ class ApiKeys {
   static const quranBaseUrl =
       'https://api.quran.com/api/v4/chapter_recitations/';
 
-  static const prayerTimesByCityBaseUrl =
-      'http://api.aladhan.com/v1/timingsByCity';
-  static const prayerTimesByAddressBaseUrl =
-      'http://api.aladhan.com/v1/timingsByAddress';
+  static const prayerTimesBaseUrl = 'http://api.aladhan.com/v1/timings';
 
   static const reciters = 'reciters';
   static const recitations = 'recitations';

@@ -10,9 +10,7 @@ import '../../../../core/theme/app_assets.dart';
 // Permissions are handled by the parent screen now.
 
 class PrayerTimesScreenBodyBuilder extends StatelessWidget {
-  const PrayerTimesScreenBodyBuilder({
-    super.key,
-  });
+  const PrayerTimesScreenBodyBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -13,10 +13,7 @@ import 'bottom_sheet_bloc_builder.dart';
 import 'quran_list_view.dart';
 
 class QuranAudioScreenBody extends StatelessWidget {
-  const QuranAudioScreenBody({
-    super.key,
-    required this.reciter,
-  });
+  const QuranAudioScreenBody({super.key, required this.reciter});
 
   final ReciterModel reciter;
 
@@ -25,8 +22,10 @@ class QuranAudioScreenBody extends StatelessWidget {
     return BlocListener<QuranPlayerCubit, QuranPlayerState>(
       listener: (context, state) {
         if (state is QuranPlayerFailure) {
-          AlertHelper.showErrorAlert(context,
-              message: state.errMessage ?? 'حدث خطأ ما');
+          AlertHelper.showErrorAlert(
+            context,
+            message: state.errMessage ?? 'حدث خطأ ما',
+          );
         }
       },
       child: AdaptiveLayout(
@@ -38,57 +37,7 @@ class QuranAudioScreenBody extends StatelessWidget {
 }
 
 class TabletQuranAudioLayout extends StatelessWidget {
-  const TabletQuranAudioLayout({
-    super.key,
-    required this.reciter,
-  });
-
-  final ReciterModel reciter;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-        width: context.screenWidth,
-        height: context.screenHeight,
-        child: Stack(
-          children: [
-            Image.asset(
-              AppAssets.imagesFullWhiteBackground,
-              width: context.screenWidth,
-              height: context.screenHeight,
-              fit: BoxFit.cover,
-            ),
-            Positioned.fill(
-              top: 120.h,
-              child: QuranListView(qaree: reciter),
-            ),
-            Positioned.fill(
-              top: 80.h,
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: CustomTextWidget(
-                  text: reciter.name,
-                  fontSize: 18.sp,
-                ),
-              ),
-            ),
-            Positioned.fill(
-              bottom: 40,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: SurahOverlayPlayerBuilder(qaree: reciter),
-              ),
-            ),
-          ],
-        ));
-  }
-}
-
-class MobileQuranAudioLayout extends StatelessWidget {
-  const MobileQuranAudioLayout({
-    super.key,
-    required this.reciter,
-  });
+  const TabletQuranAudioLayout({super.key, required this.reciter});
 
   final ReciterModel reciter;
 
@@ -105,6 +54,48 @@ class MobileQuranAudioLayout extends StatelessWidget {
             height: context.screenHeight,
             fit: BoxFit.cover,
           ),
+          Positioned.fill(
+            top: 120.h,
+            child: QuranListView(qaree: reciter),
+          ),
+          Positioned.fill(
+            top: 80.h,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: CustomTextWidget(text: reciter.name, fontSize: 18.sp),
+            ),
+          ),
+          Positioned.fill(
+            bottom: 40,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: SurahOverlayPlayerBuilder(qaree: reciter),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MobileQuranAudioLayout extends StatelessWidget {
+  const MobileQuranAudioLayout({super.key, required this.reciter});
+
+  final ReciterModel reciter;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: context.screenWidth,
+      height: context.screenHeight,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage(AppAssets.imagesFullWhiteBackground),
+        ),
+      ),
+      child: Stack(
+        children: [
           Positioned.fill(
             top: 100.h,
             child: QuranListView(qaree: reciter),

@@ -20,7 +20,7 @@ class PrayerTimesGridView extends StatelessWidget {
       itemCount: prayers.prayerTimes.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisExtent: context.isTablet ? 160.h : 130.h,
+        mainAxisExtent: context.isTablet ? 165.h : 140.h,
         crossAxisSpacing: context.isTablet ? 24 : 16,
         mainAxisSpacing: context.isTablet ? 20 : 10,
       ),
