@@ -26,50 +26,51 @@ class TopBar extends StatelessWidget {
     return ClipPath(
       clipper: _CurvedUpperClipper(),
       child: Container(
+        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
         width: context.screenWidth,
         height: height,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(image ?? AppAssets.imagesGreenBackground),
             fit: BoxFit.cover,
+            alignment: const Alignment(0, -.4),
           ),
         ),
-        child: SafeArea(
-          child: Stack(
-            children: [
-              if (label != null)
-                Center(
-                  child: Container(
-                    margin: const EdgeInsets.only(bottom: 20),
-                    padding: EdgeInsets.symmetric(vertical: 8.h),
-                    width: context.screenWidth * .6,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      border: Border.all(color: Colors.white, width: 3),
-                    ),
-                    child: Text(
-                      label!,
-                      style: AppStyles.style42l,
-                      textAlign: TextAlign.center,
-                    ),
+        child: Stack(
+          children: [
+            if (label != null)
+              Center(
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 20),
+                  padding: EdgeInsets.symmetric(vertical: 8.h),
+                  width: context.screenWidth * .6,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    border: Border.all(color: Colors.white, width: 3),
+                  ),
+                  child: Text(
+                    label!,
+                    style: AppStyles.style42l,
+                    textAlign: TextAlign.center,
                   ),
                 ),
-              if (withBackButton && Platform.isAndroid)
-                Positioned(
-                  left: 10.w,
-                  child: IconButton(
-                    onPressed: () {
-                      context.pop();
-                    },
-                    icon: Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: Colors.white,
-                      size: 26.w,
-                    ),
+              ),
+            //TODO: change Platform.isAndroid to IOS
+            if (withBackButton && Platform.isAndroid)
+              Positioned(
+                left: 10.w,
+                child: IconButton(
+                  onPressed: () {
+                    context.pop();
+                  },
+                  icon: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    color: Colors.white,
+                    size: 26.w,
                   ),
                 ),
-            ],
-          ),
+              ),
+          ],
         ),
       ),
     );
@@ -88,7 +89,7 @@ class _CurvedUpperClipper extends CustomClipper<Path> {
     path.lineTo(size.width, 0);
 
     // Line down the right side to start of curve
-    path.lineTo(size.width, size.height - 20);
+    path.lineTo(size.width, size.height);
 
     // Create the upward curve at the bottom using quadratic bezier
     // The curve goes UP (concave)
@@ -96,7 +97,7 @@ class _CurvedUpperClipper extends CustomClipper<Path> {
       size.width / 2, // Control point X (center)
       size.height - 120.h, // Control point Y (curves upward)
       0, // End point X (left edge)
-      size.height - 20, // End point Y
+      size.height, // End point Y
     );
 
     // Close the path back to start

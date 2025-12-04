@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quran_app/core/helpers/azkar_helper.dart';
+import 'package:flutter_quran_app/core/helpers/functions.dart';
 import 'package:flutter_quran_app/core/theme/app_assets.dart';
 import 'package:flutter_quran_app/core/widgets/custom_text_widget.dart';
 import 'package:flutter_quran_app/features/azkar/data/zekr_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../../core/helpers/extensions/app_navigator.dart';
+import '../../../core/widgets/full_image.dart';
 import 'azkar_sections_screen.dart';
 import 'widgets/zekr_widget.dart';
 
@@ -22,20 +25,23 @@ class _AzkarScreenState extends State<AzkarScreen> {
   final Map<int, int> _counterValues = {};
 
   void init() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() async {
-        azkar = await AzkarHelper.getAzkar(widget.section);
-      });
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      azkar = await AzkarHelper.getAzkar(widget.section);
+      setState(() {});
     });
   }
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      azkar = await AzkarHelper.getAzkar(widget.section);
-      setState(() {});
-    });
+    init();
+    changeBrightness(Brightness.dark);
+  }
+
+  @override
+  void dispose() {
+    changeBrightness(Brightness.light);
+    super.dispose();
   }
 
   void _incrementCounter(int index) {
@@ -52,43 +58,56 @@ class _AzkarScreenState extends State<AzkarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(AppAssets.imagesFullWhiteBackground),
-            fit: BoxFit.cover,
-          ),
-        ),
+      body: SizedBox(
         width: double.infinity,
         height: double.infinity,
-        child: CustomScrollView(
-          physics: const ClampingScrollPhysics(),
-          slivers: [
-            SliverToBoxAdapter(child: SizedBox(height: 65.h)),
-            SliverToBoxAdapter(
-              child: Center(
-                child: CustomTextWidget(text: widget.section.title),
-              ),
-            ),
-            SliverToBoxAdapter(child: SizedBox(height: 18.h)),
-            if (azkar != null)
-              SliverList.separated(
-                itemCount: azkar!.length,
-                itemBuilder: (context, index) {
-                  return ZekrWidget(
-                    key: ValueKey('zekr_$index'),
-                    zekr: azkar![index],
-                    currentCount: _counterValues[index] ?? 0,
-                    onIncrement: () => _incrementCounter(index),
-                  );
-                },
-                separatorBuilder: (_, __) => const SizedBox(height: 18),
-              )
-            else
-              SliverFillRemaining(
-                child: Lottie.asset(AppAssets.lottiesCircularIndicator),
-              ),
-            SliverToBoxAdapter(child: SizedBox(height: 30.h)),
+        child: Stack(
+          children: [
+            const FullImage(image: AppAssets.imagesFullWhiteBackground),
+            CustomScrollView(
+              physics: const ClampingScrollPhysics(),
+              slivers: [
+                SliverPadding(
+                  padding: const EdgeInsets.all(20),
+                  sliver: SliverToBoxAdapter(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        IconButton(
+                          color: Colors.black,
+                          icon: const Icon(Icons.arrow_forward_ios_outlined),
+                          onPressed: () => context.pop(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Center(
+                    child: CustomTextWidget(text: widget.section.title),
+                  ),
+                ),
+                SliverToBoxAdapter(child: SizedBox(height: 18.h)),
+                if (azkar != null)
+                  SliverList.separated(
+                    itemCount: azkar!.length,
+                    itemBuilder: (context, index) {
+                      return ZekrWidget(
+                        key: ValueKey('zekr_$index'),
+                        zekr: azkar![index],
+                        currentCount: _counterValues[index] ?? 0,
+                        onIncrement: () => _incrementCounter(index),
+                      );
+                    },
+                    separatorBuilder: (_, __) => const SizedBox(height: 18),
+                  )
+                else
+                  SliverFillRemaining(
+                    child: Lottie.asset(AppAssets.lottiesCircularIndicator),
+                  ),
+                SliverToBoxAdapter(child: SizedBox(height: 30.h)),
+              ],
+            )
           ],
         ),
       ),

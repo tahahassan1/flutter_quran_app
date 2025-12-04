@@ -22,9 +22,9 @@ class PrayerTimeWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(2),
       decoration: isNextPrayer
-          ? BoxDecoration(
-              borderRadius: BorderRadius.circular(context.isTablet ? 200 : 100),
-              gradient: const LinearGradient(
+          ? const BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
                 colors: [
                   Color.fromARGB(255, 10, 85, 79),
                   Color.fromARGB(255, 47, 68, 186)
@@ -36,9 +36,9 @@ class PrayerTimeWidget extends StatelessWidget {
           : null,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 20),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(context.isTablet ? 200 : 100),
-          image: const DecorationImage(
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
             fit: BoxFit.cover,
             image: AssetImage(AppAssets.imagesGreenColor),
           ),
@@ -49,11 +49,15 @@ class PrayerTimeWidget extends StatelessWidget {
           children: [
             Text(
               prayer.title,
-              style: AppStyles.style24harmattan,
+              style: AppStyles.style20harmattan.copyWith(
+                color: Colors.white,
+              ),
             ),
             Text(
               prayer.date.toPrayerTime,
-              style: AppStyles.style24harmattan,
+              style: AppStyles.style20harmattan.copyWith(
+                color: Colors.white,
+              ),
             ),
             Text(
               '${prayer.prayerType == PrayerType.sunrise ? 'الإشراق' : 'الإقامة'}: ${prayer.iqamaDate.toPrayerTime}',

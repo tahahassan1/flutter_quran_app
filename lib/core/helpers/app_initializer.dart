@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quran_app/core/di/di.dart';
@@ -12,7 +13,7 @@ import 'package:just_audio_background/just_audio_background.dart';
 import '../../bloc_observer.dart';
 import '../services/prayer_times_cache.dart';
 import 'quran_json_helper.dart';
-  
+
 class AppInitializer {
   static Future<void> mainInit() async {
     setupGetIt();
@@ -20,6 +21,7 @@ class AppInitializer {
     await Future.wait([
       _initHive(),
       _handleOrientation(),
+      _handleFullScreen(),
       QuranJsonHelper.initQuranData(),
       JustAudioBackground.init(
         androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
@@ -41,6 +43,18 @@ class AppInitializer {
       TafsirHelper.initTafsir(),
       BookmarkService.init(),
     ]);
+  }
+
+  static Future<void> _handleFullScreen() async {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.light,
+      ),
+    );
   }
 
   static Future<void> _handleOrientation() async {

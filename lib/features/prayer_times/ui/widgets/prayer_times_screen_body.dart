@@ -35,11 +35,10 @@ class PrayerTimesScreenBody extends StatelessWidget {
                 isMorning: nextPrayer.prayerType.isMorning,
               ),
             ),
-            const SliverToBoxAdapter(child: SizedBox(height: 10)),
             SliverToBoxAdapter(
               child: Center(child: PrayerTimesDateWidget(prayers: prayers)),
             ),
-            const SliverToBoxAdapter(child: SizedBox(height: 20)),
+            const SliverToBoxAdapter(child: SizedBox(height: 8)),
             SliverPadding(
               padding: EdgeInsets.symmetric(
                 horizontal: context.screenWidth * 0.1,

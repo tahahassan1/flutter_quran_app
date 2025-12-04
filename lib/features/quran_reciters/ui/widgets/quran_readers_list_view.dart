@@ -31,11 +31,12 @@ class ReadersListView extends StatelessWidget {
               child: Stack(
                 children: [
                   TopBar(
-                    height: 260.h,
+                    height: 242.h + context.topPadding,
                     label: 'القـــراء',
                   ),
                   Positioned.fill(
-                    top: context.isTablet ? 215.h : 190.h,
+                    top:
+                        (context.isTablet ? 215.h : 180.h) + context.topPadding,
                     child: const Align(
                       alignment: Alignment.topCenter,
                       child: RecitersSearchBar(),
@@ -45,8 +46,7 @@ class ReadersListView extends StatelessWidget {
               ),
             ),
           ),
-          if (context.isTablet)
-            const SliverToBoxAdapter(child: SizedBox(height: 20)),
+          const SliverToBoxAdapter(child: SizedBox(height: 20)),
           SliverPrototypeExtentList(
             prototypeItem: Padding(
               padding: const EdgeInsets.all(8.0),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quran_app/core/di/di.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
@@ -26,7 +25,6 @@ class _QuranScreenState extends State<QuranScreen> {
 
   @override
   void initState() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     WakelockPlus.enable();
     _initializeCache();
     super.initState();
@@ -44,10 +42,6 @@ class _QuranScreenState extends State<QuranScreen> {
   @override
   void dispose() {
     WakelockPlus.disable();
-    SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.manual,
-      overlays: SystemUiOverlay.values,
-    );
     super.dispose();
   }
 

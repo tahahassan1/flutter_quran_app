@@ -14,7 +14,7 @@ class UserLocationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8.h),
       width: context.screenWidth * .8,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -35,8 +35,7 @@ class UserLocationWidget extends StatelessWidget {
             child: Text(
               location,
               style: AppStyles.style16.copyWith(
-                fontWeight:
-                    context.isTablet ? FontWeight.normal : FontWeight.bold,
+                fontWeight: FontWeight.w600,
                 fontSize: context.isTablet ? 12.sp : null,
               ),
             ),

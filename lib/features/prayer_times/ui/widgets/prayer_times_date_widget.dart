@@ -19,7 +19,7 @@ class PrayerTimesDateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 28),
+      padding: EdgeInsets.symmetric(vertical: 22.h),
       width: context.screenWidth * .82,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
@@ -52,7 +52,6 @@ class PrayerTimesDateWidget extends StatelessWidget {
               fontWeight: FontWeight.normal,
             ),
           ),
-          
         ],
       ),
     );
