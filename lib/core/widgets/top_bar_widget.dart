@@ -55,8 +55,7 @@ class TopBar extends StatelessWidget {
                   ),
                 ),
               ),
-            //TODO: change Platform.isAndroid to IOS
-            if (withBackButton && Platform.isAndroid)
+            if (withBackButton && Platform.isIOS)
               Positioned(
                 left: 10.w,
                 child: IconButton(
