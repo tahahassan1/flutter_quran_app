@@ -20,7 +20,7 @@ class PrayerTimesHeader extends StatelessWidget {
             image: isMorning
                 ? AppAssets.imagesMorningBackground
                 : AppAssets.imagesEveningBackground,
-            height: 190.h + context.topPadding,
+            height: context.isTablet ? 240.h : 190.h + context.topPadding,
           ),
           Positioned(
             right: 20.w,

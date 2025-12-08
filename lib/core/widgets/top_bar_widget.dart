@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/app_navigator.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
@@ -55,7 +53,7 @@ class TopBar extends StatelessWidget {
                   ),
                 ),
               ),
-            if (withBackButton && Platform.isIOS)
+            if (withBackButton)
               Positioned(
                 left: 10.w,
                 child: IconButton(
