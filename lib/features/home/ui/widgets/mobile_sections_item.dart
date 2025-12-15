@@ -37,7 +37,7 @@ class MobileSectionsItem extends StatelessWidget {
             const Spacer(),
             Text(
               section.title,
-              style: AppStyles.style28l.copyWith(color: Colors.white),
+              style: AppStyles.style28l.copyWith(color: Colors.yellow),
             ),
             const Spacer(),
             VectorGraphic(

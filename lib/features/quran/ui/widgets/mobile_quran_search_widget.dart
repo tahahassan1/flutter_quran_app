@@ -24,7 +24,7 @@ class _MobileQuranSearchState extends State<MobileQuranSearch> {
     final cubit = context.read<SearchCubit>();
 
     return SizedBox(
-      width: MediaQuery.of(context).size.width * .7,
+      width: MediaQuery.of(context).size.width * .6,
       child: CupertinoSearchTextField(
         placeholder: 'ابحث بالآية',
         controller: cubit.controller,
