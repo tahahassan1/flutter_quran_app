@@ -10,6 +10,8 @@ import 'package:flutter_quran_app/features/quran/bloc/verse_player/verse_player_
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quran/quran.dart';
 
+import '../../../../core/helpers/extensions/app_navigator.dart';
+import '../../../../core/helpers/extensions/screen_details.dart';
 import '../widgets/basmallah.dart';
 import '../widgets/header_widget.dart';
 import '../widgets/page_details.dart';
@@ -225,6 +227,25 @@ class _MobileSurahVersesWidgetState extends State<MobileSurahVersesWidget> {
       text: TextSpan(
         style: const TextStyle(color: Colors.black),
         children: [
+          if (context.isLandscape)
+            WidgetSpan(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      onPressed: () => context.pop(),
+                      icon: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 16.w,
+                        color: context.onSecondary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ..._buildSpans(context),
           if (widget.pageNumber > 2)
             TextSpan(

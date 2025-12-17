@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/int_extensions.dart';
+import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -82,11 +83,16 @@ class _TabletFullPageRichTextState extends State<TabletFullPageRichText> {
           Expanded(
             child: Center(
               child: SingleChildScrollView(
-                child: TabletSurahVersesWidget(
-                  isFullPage: true,
-                  family: currentFontFamily!,
-                  fontSize: getFontSize(),
-                  pageNumber: widget.pageNumber,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: context.isLandscape ? 30.h : 0,
+                  ),
+                  child: TabletSurahVersesWidget(
+                    isFullPage: true,
+                    family: currentFontFamily!,
+                    fontSize: getFontSize(),
+                    pageNumber: widget.pageNumber,
+                  ),
                 ),
               ),
             ),

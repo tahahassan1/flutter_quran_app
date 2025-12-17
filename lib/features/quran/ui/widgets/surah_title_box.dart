@@ -82,7 +82,7 @@ class SurahTitleBoxTablet extends StatelessWidget {
             'سُورَة $text',
             style: context.headlineSmall.copyWith(
               color: Colors.white,
-              fontSize: 16.sp,
+              fontSize: 14.8.sp,
             ),
           ),
         ),

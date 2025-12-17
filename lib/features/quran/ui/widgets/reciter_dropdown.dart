@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
 import 'package:flutter_quran_app/core/theme/app_colors.dart';
 import 'package:flutter_quran_app/core/theme/app_styles.dart';
 import 'package:flutter_quran_app/features/quran/bloc/verse_player/verse_player_cubit.dart';
@@ -28,13 +29,10 @@ class _ReciterDropdownState extends State<ReciterDropdown> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: context.isLandscape ? 80.h : 60.h,
       decoration: BoxDecoration(
         color: AppColors.lime,
         borderRadius: BorderRadius.circular(12),
-        // border: Border.all(
-        //   color: context.primaryColor.withAlpha(77), // 0.3 opacity equivalent
-        //   width: 1,
-        // ),
         boxShadow: [
           BoxShadow(
             color: AppColors.lime.withAlpha(25), // 0.1 opacity equivalent
@@ -58,6 +56,7 @@ class _ReciterDropdownState extends State<ReciterDropdown> {
           style: AppStyles.style16.copyWith(
             color: Colors.white,
             fontWeight: FontWeight.w600,
+            fontSize: context.isTablet ? 12.sp : null,
           ),
           dropdownColor: Colors.white,
           borderRadius: BorderRadius.circular(12),
@@ -65,14 +64,21 @@ class _ReciterDropdownState extends State<ReciterDropdown> {
             return DropdownMenuItem<String>(
               value: entry.key,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
-                child: Text(
-                  entry.value,
-                  style: AppStyles.style16.copyWith(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
+                height: double.infinity,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 12.w,
+                  vertical: context.isTablet ? 0 : 8.h,
+                ),
+                child: Center(
+                  child: Text(
+                    entry.value,
+                    style: AppStyles.style16.copyWith(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: context.isTablet ? 12.sp : null,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
             );

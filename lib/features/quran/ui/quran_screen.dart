@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quran_app/core/di/di.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
@@ -41,6 +42,10 @@ class _QuranScreenState extends State<QuranScreen> {
 
   @override
   void dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     WakelockPlus.disable();
     super.dispose();
   }
@@ -54,7 +59,6 @@ class _QuranScreenState extends State<QuranScreen> {
         ),
       );
     }
-
     return Scaffold(
       backgroundColor: context.primaryColor,
       resizeToAvoidBottomInset: false,

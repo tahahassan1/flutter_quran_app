@@ -17,7 +17,7 @@ class HomeScreenBodyMobile extends StatelessWidget {
           child: Image.asset(
             AppAssets.imagesWhiteBackground,
             fit: BoxFit.cover,
-          )
+          ),
         ),
         Align(
           alignment: Alignment.topCenter,
