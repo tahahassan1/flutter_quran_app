@@ -38,7 +38,9 @@ class _MobileFullPageRichTextState extends State<MobileFullPageRichText> {
 
   double getFontSize() {
     final n = widget.pageNumber;
-
+    // if(context.isLandscape){
+    //   return 19.sp;
+    // }
     if (n <= 2) {
       return 26.sp;
     } else if (n == 574 || n == 579 || n == 585) {

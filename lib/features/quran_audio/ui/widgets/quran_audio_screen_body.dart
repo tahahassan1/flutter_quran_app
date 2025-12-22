@@ -91,43 +91,46 @@ class MobileQuranAudioLayout extends StatelessWidget {
           image: AssetImage(AppAssets.imagesFullWhiteBackground),
         ),
       ),
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                  color: Colors.black,
-                  icon: const Icon(Icons.arrow_forward_ios_outlined),
-                  onPressed: () => context.pop(),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Stack(
-              children: [
-                Positioned.fill(
-                  top: 15.h,
-                  child: QuranListView(qaree: reciter),
-                ),
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: CustomTextWidget(text: reciter.name),
-                ),
-                Positioned.fill(
-                  bottom: 40,
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SurahOverlayPlayerBuilder(qaree: reciter),
+      child: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    color: Colors.black,
+                    icon: const Icon(Icons.arrow_forward_ios_outlined),
+                    onPressed: () => context.pop(),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+            const SizedBox(height: 10),
+            Expanded(
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    top: 15.h,
+                    child: QuranListView(qaree: reciter),
+                  ),
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: CustomTextWidget(text: reciter.name),
+                  ),
+                  Positioned.fill(
+                    bottom: 40,
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: SurahOverlayPlayerBuilder(qaree: reciter),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

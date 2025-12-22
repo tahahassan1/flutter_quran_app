@@ -50,7 +50,9 @@ class TopBar extends StatelessWidget {
                     ),
                     child: Text(
                       label!,
-                      style: AppStyles.style42l,
+                      style: AppStyles.style42l.copyWith(
+                        fontSize: context.isLandscape ? 26.sp : null,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -58,6 +60,7 @@ class TopBar extends StatelessWidget {
               if (withBackButton)
                 Positioned(
                   left: 10.w,
+                  top: 5.h,
                   child: IconButton(
                     onPressed: () {
                       context.pop();
@@ -65,7 +68,7 @@ class TopBar extends StatelessWidget {
                     icon: Icon(
                       Icons.arrow_forward_ios_rounded,
                       color: Colors.white,
-                      size: 26.w,
+                      size: context.isLandscape ? 18.w : 26.w,
                     ),
                   ),
                 ),

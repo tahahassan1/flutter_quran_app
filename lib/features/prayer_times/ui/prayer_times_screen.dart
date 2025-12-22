@@ -158,14 +158,10 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen>
             );
           }
 
-          return SizedBox(
-            width: context.screenWidth,
-            height: context.screenHeight,
-            child: BlocProvider(
+          return BlocProvider(
               create: (_) => PrayerTimesCubit(getIt()),
               child: const PrayerTimesScreenBodyBuilder(),
-            ),
-          );
+            );
         },
       ).withSafeArea(),
     );

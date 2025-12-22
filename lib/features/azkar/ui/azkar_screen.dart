@@ -51,13 +51,14 @@ class _AzkarScreenState extends State<AzkarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Stack(
-          children: [
-            const FullImage(image: AppAssets.imagesFullWhiteBackground),
-            CustomScrollView(
+      body: Stack(
+        children: [
+          const Positioned.fill(
+            child: FullImage(image: AppAssets.imagesFullWhiteBackground),
+          ),
+          SafeArea(
+            top: true,
+            child: CustomScrollView(
               physics: const ClampingScrollPhysics(),
               slivers: [
                 SliverPadding(
@@ -100,9 +101,9 @@ class _AzkarScreenState extends State<AzkarScreen> {
                   ),
                 SliverToBoxAdapter(child: SizedBox(height: 30.h)),
               ],
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ).withSafeArea(),
     );
   }

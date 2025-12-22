@@ -37,12 +37,7 @@ enum AppSection {
     switch (this) {
       case AppSection.quran:
         {
-          await SystemChrome.setPreferredOrientations([
-            DeviceOrientation.landscapeLeft,
-            DeviceOrientation.landscapeLeft,
-            DeviceOrientation.portraitUp,
-            DeviceOrientation.portraitDown,
-          ]);
+          await SystemChrome.setPreferredOrientations([]);
           if (context.mounted) {
             context.push(const QuranScreen());
           }

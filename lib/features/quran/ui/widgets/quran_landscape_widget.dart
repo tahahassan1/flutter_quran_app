@@ -12,17 +12,26 @@ class LandscapeQuranWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: context.screenWidth,
-      height: context.screenHeight,
-      color: context.onPrimary,
-      child: PageView.builder(
-        controller: context.read<QuranCubit>().fullQuranController,
-        itemCount: totalPagesCount,
-        onPageChanged: null,
-        itemBuilder: (context, index) {
-          return FullPageRichText(pageNumber: index + 1);
-        },
+    return SafeArea(
+      right: true,
+      left: true,
+      top: false,
+      bottom: false,
+      child: Container(
+        width: context.screenWidth,
+        height: context.screenHeight,
+        color: context.onPrimary,
+        child: PageView.builder(
+          controller: context.read<QuranCubit>().fullQuranController,
+          itemCount: totalPagesCount,
+          onPageChanged: null,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: EdgeInsets.only(bottom: index > 1 ? 12 : 0),
+              child: FullPageRichText(pageNumber: index + 1),
+            );
+          },
+        ),
       ),
     );
   }

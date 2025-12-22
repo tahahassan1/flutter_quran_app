@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quran_app/core/theme/app_assets.dart';
 import 'package:flutter_quran_app/core/widgets/top_bar_widget.dart';
+import 'package:flutter_quran_app/features/quran_reciters/ui/widgets/quran_readers_list_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/helpers/extensions/screen_details.dart';
 import '../../data/models/reciter_model.dart';
-import 'reciter_widget.dart';
 import 'reciters_search_bar.dart';
 
-class ReadersBody extends StatelessWidget {
-  const ReadersBody({super.key, required this.reciters});
+class LandscapeReadersBody extends StatelessWidget {
+  const LandscapeReadersBody({super.key, required this.reciters});
   final List<ReciterModel> reciters;
 
   @override
@@ -25,22 +25,23 @@ class ReadersBody extends StatelessWidget {
         Align(
           alignment: Alignment.topCenter,
           child: TopBar(
-            height: 242.h,
+            height: 300.h,
             label: 'القـــراء',
           ),
         ),
         Positioned.fill(
-          top: 180.h,
+          top: 220.h,
           child: Align(
             alignment: Alignment.topCenter,
             child: SizedBox(
-              width: context.screenWidth * .8,
+              width: context.screenWidth * .6,
+              height: 90.h,
               child: const RecitersSearchBar(),
             ),
           ),
         ),
         Positioned.fill(
-          top: 250.h,
+          top: 350.h,
           child: ReadersListView(reciters: reciters),
         ),
       ],
@@ -94,37 +95,5 @@ class ReadersBody extends StatelessWidget {
     //     ],
     //   ),
     // );
-  }
-}
-
-class ReadersListView extends StatelessWidget {
-  const ReadersListView({
-    super.key,
-    required this.reciters,
-  });
-
-  final List<ReciterModel> reciters;
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomScrollView(
-      cacheExtent: 600,
-      physics: const ClampingScrollPhysics(),
-      slivers: [
-        SliverPrototypeExtentList(
-          prototypeItem: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ReciterWidget(reciter: reciters[0]),
-          ),
-          delegate: SliverChildBuilderDelegate(
-            childCount: reciters.length,
-            (context, index) => Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: ReciterWidget(reciter: reciters[index]),
-            ),
-          ),
-        ),
-      ],
-    );
   }
 }
