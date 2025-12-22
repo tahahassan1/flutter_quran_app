@@ -39,19 +39,20 @@ class PrayerTimesDateWidget extends StatelessWidget {
                 style: AppStyles.style26expo,
               ),
               Text(
-                title1,
+                context.isLandscape ? '$title1 | $title2' : title1,
                 style: AppStyles.style24harmattan.copyWith(
                   fontWeight: FontWeight.normal,
                 ),
               ),
             ],
           ),
-          Text(
-            title2,
-            style: AppStyles.style24harmattan.copyWith(
-              fontWeight: FontWeight.normal,
+          if (!context.isLandscape)
+            Text(
+              title2,
+              style: AppStyles.style24harmattan.copyWith(
+                fontWeight: FontWeight.normal,
+              ),
             ),
-          ),
         ],
       ),
     );

@@ -36,14 +36,19 @@ class PrayerTimesScreenBody extends StatelessWidget {
           ),
         ),
         Positioned.fill(
-          top: 205.h,
+          top: context.isLandscape
+              ? 350.h
+              : context.isTablet
+                  ? 235.h
+                  : 205.h,
           child: CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
               SliverToBoxAdapter(
                 child: Center(child: PrayerTimesDateWidget(prayers: prayers)),
               ),
-              const SliverToBoxAdapter(child: SizedBox(height: 8)),
+              SliverToBoxAdapter(
+                  child: SizedBox(height: context.isLandscape ? 16.h : 8)),
               SliverPadding(
                 padding: EdgeInsets.symmetric(
                   horizontal: context.screenWidth * 0.1,

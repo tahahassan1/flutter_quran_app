@@ -19,7 +19,7 @@ class RecitersSearchBar extends StatelessWidget {
       borderRadius: BorderRadius.circular(100),
     );
     return Material(
-      elevation: 0,
+      elevation: 2,
       borderRadius: BorderRadius.circular(100),
       child: TextField(
         textAlign: TextAlign.center,

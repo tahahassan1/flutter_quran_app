@@ -43,8 +43,10 @@ class ReciterWidget extends StatelessWidget {
               Expanded(
                 child: Text(
                   reciter.name,
-                  style: AppStyles.style22expo
-                      .copyWith(fontSize: context.isTablet ? 18.sp : null),
+                  style: AppStyles.style22expo.copyWith(
+                      fontSize: (context.isTablet || context.isLandscape)
+                          ? 18.sp
+                          : null),
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                 ),

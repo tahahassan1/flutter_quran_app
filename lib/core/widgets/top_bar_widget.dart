@@ -51,7 +51,9 @@ class TopBar extends StatelessWidget {
                     child: Text(
                       label!,
                       style: AppStyles.style42l.copyWith(
-                        fontSize: context.isLandscape ? 26.sp : null,
+                        fontSize: (context.isLandscape || context.isTablet)
+                            ? 30.sp
+                            : null,
                       ),
                       textAlign: TextAlign.center,
                     ),

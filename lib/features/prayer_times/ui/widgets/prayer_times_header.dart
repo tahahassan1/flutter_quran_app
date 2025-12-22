@@ -20,15 +20,25 @@ class PrayerTimesHeader extends StatelessWidget {
             image: isMorning
                 ? AppAssets.imagesMorningBackground
                 : AppAssets.imagesEveningBackground,
-            height: context.isTablet ? 240.h : 210.h,
+            height: context.isLandscape
+                ? 350.h
+                : context.isTablet
+                    ? 255.h
+                    : 210.h,
           ),
-          Positioned(
-            right: 20.w,
-            top: 15.h,
-            child: SafeArea(
+          SafeArea(
+            child: Padding(
+              padding: EdgeInsets.only(
+                right: 20.w,
+                top: context.isTabOrLand ? 30.h : 15.h,
+              ),
               child: SvgPicture.asset(
                 AppAssets.svgsPrayersTitle,
-                width: context.screenWidth * .4,
+                width: context.isLandscape
+                    ? context.screenWidth * .22
+                    : context.isTablet
+                        ? context.screenWidth * .34
+                        : context.screenWidth * .4,
                 fit: BoxFit.cover,
               ),
             ),

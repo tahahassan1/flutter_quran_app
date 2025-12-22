@@ -12,8 +12,6 @@ class FullImage extends StatelessWidget {
     return Image.asset(
       image,
       fit: BoxFit.cover,
-      height: double.infinity,
-      width: double.infinity,
     );
   }
 }

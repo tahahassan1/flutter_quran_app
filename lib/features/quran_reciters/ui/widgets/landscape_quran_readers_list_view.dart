@@ -25,23 +25,22 @@ class LandscapeReadersBody extends StatelessWidget {
         Align(
           alignment: Alignment.topCenter,
           child: TopBar(
-            height: 300.h,
+            height: 350.h,
             label: 'القـــراء',
           ),
         ),
         Positioned.fill(
-          top: 220.h,
+          top: 270.h,
           child: Align(
             alignment: Alignment.topCenter,
             child: SizedBox(
               width: context.screenWidth * .6,
-              height: 90.h,
               child: const RecitersSearchBar(),
             ),
           ),
         ),
         Positioned.fill(
-          top: 350.h,
+          top: 400.h,
           child: ReadersListView(reciters: reciters),
         ),
       ],

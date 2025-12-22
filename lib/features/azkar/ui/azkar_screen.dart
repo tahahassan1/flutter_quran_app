@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quran_app/core/helpers/azkar_helper.dart';
+import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/widgets_ext.dart';
 import 'package:flutter_quran_app/core/theme/app_assets.dart';
 import 'package:flutter_quran_app/core/widgets/custom_text_widget.dart';
@@ -70,6 +71,7 @@ class _AzkarScreenState extends State<AzkarScreen> {
                         IconButton(
                           color: Colors.black,
                           icon: const Icon(Icons.arrow_forward_ios_outlined),
+                          iconSize: context.isTablet ? 20.w : null,
                           onPressed: () => context.pop(),
                         ),
                       ],
@@ -78,7 +80,9 @@ class _AzkarScreenState extends State<AzkarScreen> {
                 ),
                 SliverToBoxAdapter(
                   child: Center(
-                    child: CustomTextWidget(text: widget.section.title),
+                    child: CustomTextWidget(
+                        text: widget.section.title,
+                        fontSize: context.isTabOrLand ? 22.sp : null),
                   ),
                 ),
                 SliverToBoxAdapter(child: SizedBox(height: 18.h)),

@@ -40,7 +40,7 @@ class ReadersBody extends StatelessWidget {
           ),
         ),
         Positioned.fill(
-          top: 250.h,
+          top: 260.h,
           child: ReadersListView(reciters: reciters),
         ),
       ],

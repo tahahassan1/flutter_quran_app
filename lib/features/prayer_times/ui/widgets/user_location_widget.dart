@@ -28,7 +28,7 @@ class UserLocationWidget extends StatelessWidget {
         children: [
           SvgPicture.asset(
             AppAssets.svgsLocation,
-            width: 30.w,
+            width: context.isLandscape ? 24.w : 30.w,
             colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
           ),
           Expanded(

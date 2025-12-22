@@ -10,4 +10,6 @@ extension ScreenDetails on BuildContext {
 
   bool get isLandscape =>
       MediaQuery.of(this).orientation == Orientation.landscape;
+
+  bool get isTabOrLand => isLandscape || isTablet;
 }
