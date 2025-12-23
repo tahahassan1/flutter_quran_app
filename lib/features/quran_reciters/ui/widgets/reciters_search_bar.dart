@@ -18,35 +18,39 @@ class RecitersSearchBar extends StatelessWidget {
       borderSide: const BorderSide(color: Colors.white),
       borderRadius: BorderRadius.circular(100),
     );
-    return SizedBox(
-      width: context.screenWidth * .8,
-      child: Material(
-        elevation: 2,
-        borderRadius: BorderRadius.circular(100),
-        child: TextField(
-          style: AppStyles.style20harmattan.copyWith(color: Colors.black),
-          controller: context.read<QuranReadersCubit>().searchController,
-          onChanged: (value) {
-            context.read<QuranReadersCubit>().onSearch(value);
-          },
-          decoration: InputDecoration(
-            hintText: 'ابحث باسم القارئ',
-            hintStyle: AppStyles.style20harmattan,
-            contentPadding: EdgeInsets.symmetric(
-              vertical: 8.h,
-              horizontal: 24.w,
-            ),
-            border: outlineInputBorder,
-            enabledBorder: outlineInputBorder,
-            focusedBorder: outlineInputBorder,
-            filled: true,
-            fillColor: const Color(0xffE7E7E7),
-            suffixIcon: Padding(
-              padding: EdgeInsets.all(context.isTablet ? 24 : 12),
-              child: SvgPicture.asset(
-                AppAssets.svgsSearchIcon,
-                width: context.isTablet ? 20.w : 10.w,
-              ),
+    return Material(
+      elevation: 2,
+      borderRadius: BorderRadius.circular(100),
+      child: TextField(
+        textAlign: TextAlign.center,
+        style: AppStyles.style20harmattan.copyWith(
+            fontSize: context.isLandscape ? 14.sp : null, color: Colors.black),
+        controller: context.read<QuranReadersCubit>().searchController,
+        onChanged: (value) {
+          context.read<QuranReadersCubit>().onSearch(value);
+        },
+        decoration: InputDecoration(
+          hintText: 'ابحث باسم القارئ',
+          hintStyle: AppStyles.style20harmattan
+              .copyWith(fontSize: context.isLandscape ? 14.sp : null),
+          contentPadding: EdgeInsets.symmetric(
+            vertical: 8.h,
+            horizontal: 24.w,
+          ),
+          border: outlineInputBorder,
+          enabledBorder: outlineInputBorder,
+          focusedBorder: outlineInputBorder,
+          filled: true,
+          fillColor: const Color(0xffE7E7E7),
+          suffixIcon: Padding(
+            padding: EdgeInsets.all(context.isTablet ? 24 : 12),
+            child: SvgPicture.asset(
+              AppAssets.svgsSearchIcon,
+              width: context.isLandscape
+                  ? 10.w
+                  : context.isTablet
+                      ? 20.w
+                      : 10.w,
             ),
           ),
         ),

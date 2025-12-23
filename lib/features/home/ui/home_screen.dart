@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_quran_app/core/helpers/app_initializer.dart';
-import 'package:flutter_quran_app/core/helpers/extensions/widgets_ext.dart';
 import 'package:flutter_quran_app/features/home/ui/layouts/home_screen_body_mobile.dart';
 
+import '../../../core/helpers/extensions/widgets_ext.dart';
 import '../../../core/widgets/adaptive_layout.dart';
 import 'layouts/home_screen_body_tablet.dart';
 

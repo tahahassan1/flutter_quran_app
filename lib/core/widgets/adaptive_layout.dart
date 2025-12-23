@@ -14,9 +14,11 @@ class AdaptiveLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final actualWidth =
+        context.isLandscape ? context.screenHeight : context.screenWidth;
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (context.screenWidth < SizeConfig.tablet) {
+        if (actualWidth < SizeConfig.tablet) {
           return mobileLayout(context);
         } else {
           if (tabletLayout != null) {

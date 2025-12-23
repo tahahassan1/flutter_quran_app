@@ -23,50 +23,52 @@ class _MobileQuranSearchState extends State<MobileQuranSearch> {
   Widget build(BuildContext context) {
     final cubit = context.read<SearchCubit>();
 
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * .7,
-      child: CupertinoSearchTextField(
-        placeholder: 'ابحث بالآية',
-        controller: cubit.controller,
-        padding: const EdgeInsets.all(10),
-        style: AppStyles.style16,
-        prefixIcon: SvgPicture.asset(AppAssets.svgsSearch),
-        suffixMode: OverlayVisibilityMode.editing,
-        onSubmitted: (value) {
-          isShowed = false;
-        },
-        onChanged: (value) async {
-          if (value.isEmpty) {
-            cubit.clear();
-            if (_sheetController != null) {
-              _sheetController!.close();
-              _sheetController = null;
-            }
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: CupertinoSearchTextField(
+          placeholder: 'ابحث بالآية',
+          controller: cubit.controller,
+          padding: const EdgeInsets.all(10),
+          style: AppStyles.style16,
+          prefixIcon: SvgPicture.asset(AppAssets.svgsSearch),
+          suffixMode: OverlayVisibilityMode.editing,
+          onSubmitted: (value) {
             isShowed = false;
-            return;
-          }
-
-          cubit.onSearch(value);
-          if (_sheetController == null) {
-            final quranCubit = context.read<QuranCubit>();
-
-            isShowed = true;
-            _sheetController = showBottomSheet(
-              context: context,
-              backgroundColor: Colors.transparent,
-              builder: (context) {
-                return BlocProvider.value(
-                  value: quranCubit,
-                  child: const VerseSearchingBottomSheet(),
-                );
-              },
-            );
-            _sheetController!.closed.whenComplete(() {
-              _sheetController = null;
+          },
+          onChanged: (value) async {
+            if (value.isEmpty) {
+              cubit.clear();
+              if (_sheetController != null) {
+                _sheetController!.close();
+                _sheetController = null;
+              }
               isShowed = false;
-            });
-          }
-        },
+              return;
+            }
+        
+            cubit.onSearch(value);
+            if (_sheetController == null) {
+              final quranCubit = context.read<QuranCubit>();
+        
+              isShowed = true;
+              _sheetController = showBottomSheet(
+                context: context,
+                backgroundColor: Colors.transparent,
+                builder: (context) {
+                  return BlocProvider.value(
+                    value: quranCubit,
+                    child: const VerseSearchingBottomSheet(),
+                  );
+                },
+              );
+              _sheetController!.closed.whenComplete(() {
+                _sheetController = null;
+                isShowed = false;
+              });
+            }
+          },
+        ),
       ),
     );
   }

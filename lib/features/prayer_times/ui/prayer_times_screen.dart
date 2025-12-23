@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quran_app/core/helpers/alert_helper.dart';
-import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/widgets_ext.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -158,14 +157,10 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen>
             );
           }
 
-          return SizedBox(
-            width: context.screenWidth,
-            height: context.screenHeight,
-            child: BlocProvider(
+          return BlocProvider(
               create: (_) => PrayerTimesCubit(getIt()),
               child: const PrayerTimesScreenBodyBuilder(),
-            ),
-          );
+            );
         },
       ).withSafeArea(),
     );

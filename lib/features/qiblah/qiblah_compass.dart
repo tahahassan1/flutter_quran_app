@@ -284,9 +284,11 @@ class _QiblahCompassState extends State<QiblahCompass>
                       painter: CompassCustomPainter(angle: animation!.value),
                       child: Image.asset(
                         AppAssets.imagesKaaba,
-                        width: context.isTablet
-                            ? context.screenWidth * .14
-                            : context.screenWidth * .25,
+                        width: context.isLandscape
+                            ? context.screenWidth * .1
+                            : context.isTablet
+                                ? context.screenWidth * .14
+                                : context.screenWidth * .25,
                       ),
                     ),
                   ),

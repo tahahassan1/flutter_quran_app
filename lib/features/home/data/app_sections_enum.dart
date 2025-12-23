@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/app_navigator.dart';
 
 import '../../../core/theme/app_assets.dart';
@@ -32,8 +33,16 @@ enum AppSection {
   ),
   ;
 
-  void push(BuildContext context) {
+  void push(BuildContext context) async {
     switch (this) {
+      case AppSection.quran:
+        {
+          await SystemChrome.setPreferredOrientations([]);
+          if (context.mounted) {
+            context.push(const QuranScreen());
+          }
+        }
+        return;
       case AppSection.readers:
         context.push(const QuranReadersScreen());
         return;
@@ -46,9 +55,6 @@ enum AppSection {
 
       case AppSection.qiblah:
         context.push(const QiblahScreen());
-        return;
-      case AppSection.quran:
-        context.push(const QuranScreen());
         return;
     }
   }

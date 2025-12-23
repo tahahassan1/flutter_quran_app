@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/app_navigator.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
@@ -26,7 +24,6 @@ class TopBar extends StatelessWidget {
     return ClipPath(
       clipper: _CurvedUpperClipper(),
       child: Container(
-        padding: EdgeInsets.only(top: context.topPadding),
         width: context.screenWidth,
         height: height,
         decoration: BoxDecoration(
@@ -36,40 +33,49 @@ class TopBar extends StatelessWidget {
             alignment: const Alignment(0, -.4),
           ),
         ),
-        child: Stack(
-          children: [
-            if (label != null)
-              Center(
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 20),
-                  padding: EdgeInsets.symmetric(vertical: 8.h),
-                  width: context.screenWidth * .6,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    border: Border.all(color: Colors.white, width: 3),
-                  ),
-                  child: Text(
-                    label!,
-                    style: AppStyles.style42l,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            if (withBackButton && Platform.isIOS)
-              Positioned(
-                left: 10.w,
-                child: IconButton(
-                  onPressed: () {
-                    context.pop();
-                  },
-                  icon: Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: Colors.white,
-                    size: 26.w,
+        child: SafeArea(
+          top: true,
+          bottom: false,
+          child: Stack(
+            children: [
+              if (label != null)
+                Center(
+                  child: Container(
+                    margin: const EdgeInsets.only(bottom: 20),
+                    padding: EdgeInsets.symmetric(vertical: 8.h),
+                    width: context.screenWidth * .6,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      border: Border.all(color: Colors.white, width: 3),
+                    ),
+                    child: Text(
+                      label!,
+                      style: AppStyles.style42l.copyWith(
+                        fontSize: (context.isLandscape || context.isTablet)
+                            ? 30.sp
+                            : null,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
-              ),
-          ],
+              if (withBackButton)
+                Positioned(
+                  left: 10.w,
+                  top: 5.h,
+                  child: IconButton(
+                    onPressed: () {
+                      context.pop();
+                    },
+                    icon: Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: Colors.white,
+                      size: context.isLandscape ? 18.w : 26.w,
+                    ),
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );

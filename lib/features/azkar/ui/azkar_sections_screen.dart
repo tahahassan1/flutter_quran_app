@@ -3,7 +3,6 @@ import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/widgets_ext.dart';
 import 'package:flutter_quran_app/core/theme/app_assets.dart';
 import 'package:flutter_quran_app/core/widgets/adaptive_layout.dart';
-import 'package:flutter_quran_app/core/widgets/full_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/widgets/top_bar_widget.dart';
@@ -16,38 +15,100 @@ class AzkarSectionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          const FullImage(image: AppAssets.imagesWhiteBackground),
-          Column(
-            spacing: 30.h,
-            children: [
-              TopBar(height: 280.h, label: 'الأذكار'),
-              Expanded(
-                child: ListView.separated(
-                  physics: const ClampingScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: context.screenWidth * .105,
-                  ),
-                  itemCount: AzkarSection.values.length,
-                  itemBuilder: (context, index) {
-                    return AdaptiveLayout(
-                      mobileLayout: (context) => MobileAzkarSectionsItem(
-                        section: AzkarSection.values[index],
-                      ),
-                      tabletLayout: (context) => TabletAzkarSectionsItem(
-                        section: AzkarSection.values[index],
-                      ),
-                    );
-                  },
-                  separatorBuilder: (_, __) => SizedBox(height: 20.h),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ).withSafeArea(),
+      body: context.isLandscape
+          ? const LandscapeAzkarSectionsScreenBody()
+          : const AzkarSectionsScreenBody(),
     );
+  }
+}
+
+class AzkarSectionsScreenBody extends StatelessWidget {
+  const AzkarSectionsScreenBody({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: Image.asset(
+            AppAssets.imagesWhiteBackground,
+            fit: BoxFit.cover,
+          ),
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: TopBar(height: 280.h, label: 'الأذكار'),
+        ),
+        Positioned.fill(
+          top: 320.h,
+          child: ListView.separated(
+            physics: const ClampingScrollPhysics(),
+            padding: EdgeInsets.symmetric(
+              horizontal: context.screenWidth * .105,
+            ),
+            itemCount: AzkarSection.values.length,
+            itemBuilder: (context, index) {
+              return AdaptiveLayout(
+                mobileLayout: (context) => MobileAzkarSectionsItem(
+                  section: AzkarSection.values[index],
+                ),
+                tabletLayout: (context) => TabletAzkarSectionsItem(
+                  section: AzkarSection.values[index],
+                ),
+              );
+            },
+            separatorBuilder: (_, __) => SizedBox(height: 20.h),
+          ),
+        )
+      ],
+    ).withSafeArea();
+  }
+}
+
+class LandscapeAzkarSectionsScreenBody extends StatelessWidget {
+  const LandscapeAzkarSectionsScreenBody({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: Image.asset(
+            AppAssets.imagesWhiteBackground,
+            fit: BoxFit.cover,
+          ),
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: TopBar(height: 350.h, label: 'الأذكار'),
+        ),
+        Positioned.fill(
+          top: 400.h,
+          child: ListView.separated(
+            physics: const ClampingScrollPhysics(),
+            padding: EdgeInsets.symmetric(
+              horizontal: context.screenWidth * .105,
+            ),
+            itemCount: AzkarSection.values.length,
+            itemBuilder: (context, index) {
+              return AdaptiveLayout(
+                mobileLayout: (context) => MobileAzkarSectionsItem(
+                  section: AzkarSection.values[index],
+                ),
+                tabletLayout: (context) => TabletAzkarSectionsItem(
+                  section: AzkarSection.values[index],
+                ),
+              );
+            },
+            separatorBuilder: (_, __) => SizedBox(height: 20.h),
+          ),
+        )
+      ],
+    ).withSafeArea();
   }
 }
 

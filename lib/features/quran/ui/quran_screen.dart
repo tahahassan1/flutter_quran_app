@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quran_app/core/di/di.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/theme.dart';
-import 'package:flutter_quran_app/core/helpers/extensions/widgets_ext.dart';
 import 'package:flutter_quran_app/core/services/cache_service.dart';
 import 'package:flutter_quran_app/features/quran/bloc/quran/quran_cubit.dart';
 import 'package:flutter_quran_app/features/quran/bloc/verse_player/verse_player_cubit.dart';
@@ -42,6 +42,10 @@ class _QuranScreenState extends State<QuranScreen> {
 
   @override
   void dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     WakelockPlus.disable();
     super.dispose();
   }
@@ -55,9 +59,9 @@ class _QuranScreenState extends State<QuranScreen> {
         ),
       );
     }
-
     return Scaffold(
-      backgroundColor: context.primaryColor,
+      backgroundColor:
+          context.isLandscape ? context.onPrimary : context.primaryColor,
       resizeToAvoidBottomInset: false,
       body: MultiBlocProvider(
         providers: [
@@ -71,7 +75,7 @@ class _QuranScreenState extends State<QuranScreen> {
           ),
           BlocProvider(create: (context) => VersePlayerCubit()),
         ],
-        child: const QuranScreenBody().withSafeArea(),
+        child: const QuranScreenBody(),
       ),
     );
   }

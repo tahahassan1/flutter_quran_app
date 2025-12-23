@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
-import 'package:flutter_quran_app/core/widgets/full_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/theme/app_assets.dart';
@@ -14,21 +13,33 @@ class HomeScreenBodyMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const FullImage(image: AppAssets.imagesWhiteBackground),
-        CustomScrollView(
-          physics: const ClampingScrollPhysics(),
-          slivers: [
-            SliverToBoxAdapter(
-              child: TopBar(height: 160.h, withBackButton: false),
-            ),
-            SliverPadding(
-              padding: EdgeInsets.symmetric(
-                horizontal: context.screenWidth * .1,
-              ),
-              sliver: const MobileHomeSectionsList(),
-            ),
-          ],
+        Positioned.fill(
+          child: Image.asset(
+            AppAssets.imagesWhiteBackground,
+            fit: BoxFit.cover,
+          ),
         ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: TopBar(height: 160.h, withBackButton: false),
+        ),
+        Positioned.fill(
+          top: 160.h,
+          child: SafeArea(
+            top: false,
+            child: CustomScrollView(
+              physics: const ClampingScrollPhysics(),
+              slivers: [
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: context.screenWidth * .1,
+                  ),
+                  sliver: const MobileHomeSectionsList(),
+                ),
+              ],
+            ),
+          ),
+        )
       ],
     );
   }

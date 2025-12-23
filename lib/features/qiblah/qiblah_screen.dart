@@ -13,29 +13,21 @@ class QiblahScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        height: context.screenHeight,
-        width: context.screenWidth,
-        child: Stack(
-          children: [
-            Image.asset(
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset(
               AppAssets.imagesWhiteBackground,
               fit: BoxFit.cover,
-              height: double.infinity,
             ),
-            Column(
-              children: [
-                TopBar(
-                  height: 280.h,
-                  label: 'القبلة',
-                ),
-                const Spacer(),
-                const QiblahCompass(),
-                const Spacer(),
-              ],
-            ),
-          ],
-        ),
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: TopBar(
+                height: context.isLandscape ? 350.h : 280.h, label: 'القبلة'),
+          ),
+          Positioned.fill(top: 280.h, child: const QiblahCompass()),
+        ],
       ).withSafeArea(),
     );
   }

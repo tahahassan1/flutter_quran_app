@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/app_navigator.dart';
+import 'package:flutter_quran_app/core/helpers/extensions/screen_details.dart';
 import 'package:flutter_quran_app/features/quran_audio/logic/quran_player/quran_player_cubit.dart';
 import 'package:flutter_quran_app/features/quran_audio/ui/quran_audio_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,7 +43,10 @@ class ReciterWidget extends StatelessWidget {
               Expanded(
                 child: Text(
                   reciter.name,
-                  style: AppStyles.style22expo,
+                  style: AppStyles.style22expo.copyWith(
+                      fontSize: (context.isTablet || context.isLandscape)
+                          ? 18.sp
+                          : null),
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                 ),

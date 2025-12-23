@@ -16,13 +16,29 @@ class PrayerTimesGridView extends StatelessWidget {
   final PrayerTimeModel nextPrayer;
   @override
   Widget build(BuildContext context) {
+    if (context.isLandscape) {
+      return SliverGrid.builder(
+        itemCount: prayers.prayerTimes.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          mainAxisExtent: 320.h,
+          mainAxisSpacing: 20.h,
+        ),
+        itemBuilder: (context, index) {
+          return PrayerTimeWidget(
+            prayer: prayers.prayerTimes[index],
+            isNextPrayer: prayers.prayerTimes[index].title == nextPrayer.title,
+          );
+        },
+      );
+    }
     return SliverGrid.builder(
       itemCount: prayers.prayerTimes.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisExtent: context.isTablet ? 165.h : 130.h,
+        mainAxisExtent: context.isTablet ? 180.h : 130.h,
         crossAxisSpacing: context.isTablet ? 24 : 16,
-        mainAxisSpacing: context.isTablet ? 20 : 6,
+        mainAxisSpacing: context.isTablet ? 10.h : 6,
       ),
       itemBuilder: (context, index) {
         return PrayerTimeWidget(

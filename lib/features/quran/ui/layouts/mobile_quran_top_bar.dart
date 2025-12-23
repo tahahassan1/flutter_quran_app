@@ -6,6 +6,7 @@ import 'package:flutter_quran_app/features/quran/bloc/quran/quran_cubit.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../core/helpers/extensions/app_navigator.dart';
 import '../widgets/mobile_quran_search_widget.dart';
 import '../widgets/quran_fehres_dialog.dart';
 import '../widgets/quran_surah_list.dart';
@@ -33,6 +34,14 @@ class MobileQuranTopBar extends StatelessWidget {
               IconButton(
                 onPressed: () => showThemeDialog(context),
                 icon: SvgPicture.asset(AppAssets.svgsSettings),
+              ),
+              IconButton(
+                onPressed: () => context.pop(),
+                icon: Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: Colors.white,
+                  size: 26.w,
+                ),
               ),
             ],
           ),

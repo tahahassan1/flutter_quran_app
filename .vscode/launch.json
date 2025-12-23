@@ -7,6 +7,11 @@
         {
             "name": "flutter_quran_app",
             "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_quran_app (SKIA)",
+            "request": "launch",
             "type": "dart",
             "args": [
                 "--no-enable-impeller"
