@@ -17,19 +17,25 @@ class QuranScreenBody extends StatelessWidget {
       children: [
         if (context.isLandscape) const LandscapeQuranWidget(),
         if (!context.isLandscape)
-          BlocBuilder<QuranCubit, QuranState>(
-            buildWhen: (previous, current) {
-              return previous.layout != current.layout ||
-                  previous.currentPage != current.currentPage;
-            },
-            builder: (context, state) {
-              switch (state.layout) {
-                case QuranLayout.full:
-                  return FullQuranWidget(currentPage: state.currentPage);
-                case QuranLayout.min:
-                  return MinQuranWidget(currentPage: state.currentPage);
-              }
-            },
+          SafeArea(
+            top: true,
+          left: false,
+          right: false,
+          bottom: true,
+            child: BlocBuilder<QuranCubit, QuranState>(
+              buildWhen: (previous, current) {
+                return previous.layout != current.layout ||
+                    previous.currentPage != current.currentPage;
+              },
+              builder: (context, state) {
+                switch (state.layout) {
+                  case QuranLayout.full:
+                    return FullQuranWidget(currentPage: state.currentPage);
+                  case QuranLayout.min:
+                    return MinQuranWidget(currentPage: state.currentPage);
+                }
+              },
+            ),
           ),
         const Positioned.fill(
           child: Align(

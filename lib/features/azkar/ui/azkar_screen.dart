@@ -59,6 +59,7 @@ class _AzkarScreenState extends State<AzkarScreen> {
           ),
           SafeArea(
             top: true,
+            bottom: false,
             child: CustomScrollView(
               physics: const ClampingScrollPhysics(),
               slivers: [
@@ -103,7 +104,7 @@ class _AzkarScreenState extends State<AzkarScreen> {
                   SliverFillRemaining(
                     child: Lottie.asset(AppAssets.lottiesCircularIndicator),
                   ),
-                SliverToBoxAdapter(child: SizedBox(height: 30.h)),
+                SliverToBoxAdapter(child: SizedBox(height: 100.h)),
               ],
             ),
           )

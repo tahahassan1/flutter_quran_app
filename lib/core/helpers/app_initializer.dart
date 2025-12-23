@@ -58,11 +58,10 @@ class AppInitializer {
   }
 
   static Future<void> _handleOrientation() async {
-    //TODO:
-    // await SystemChrome.setPreferredOrientations([
-    //   DeviceOrientation.portraitUp,
-    //   DeviceOrientation.portraitDown,
-    // ]);
+    await SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
   }
 
   // static Future<void> _handleScheduleNotifications() async {

@@ -18,7 +18,7 @@ class MobileSectionsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ZoomTapAnimation(
       end: .98,
-      onTap: () =>section.push(context),
+      onTap: () => section.push(context),
       child: Container(
         padding: EdgeInsets.all(16.w),
         height: 100.h,

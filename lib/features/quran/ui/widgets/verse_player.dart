@@ -146,10 +146,11 @@ class LandscapeVersePlayer extends StatelessWidget {
                   ),
                   IconButton(
                     padding: EdgeInsets.zero,
+                    onLongPress: () {},
                     onPressed: () {
                       cubit.handlePlayPause();
                     },
-                    iconSize: 55.w,
+                    iconSize: context.isTablet ? 55.w : 30.w,
                     icon: isLoading
                         ? const CircularProgressIndicator()
                         : Icon(

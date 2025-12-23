@@ -36,9 +36,7 @@ class PrayerTimesHeader extends StatelessWidget {
                 AppAssets.svgsPrayersTitle,
                 width: context.isLandscape
                     ? context.screenWidth * .22
-                    : context.isTablet
-                        ? context.screenWidth * .34
-                        : context.screenWidth * .4,
+                    : context.screenWidth * .34,
                 fit: BoxFit.cover,
               ),
             ),

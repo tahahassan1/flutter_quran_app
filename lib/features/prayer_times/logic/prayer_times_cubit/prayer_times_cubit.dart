@@ -18,27 +18,6 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
   PrayerTimesResponseModel? prayers;
 
   Future<UserLocationModel?> getUserLocation() async {
-    //TODO: remove this !!!!!!!!!!!!!!
-    return UserLocationModel(
-      position: Position(
-        latitude: 23,
-        longitude: 23,
-        timestamp: DateTime.timestamp(),
-        accuracy: 2,
-        altitude: 2,
-        heading: 2,
-        speed: 2,
-        altitudeAccuracy: 2,
-        headingAccuracy: 2,
-        isMocked: true,
-        speedAccuracy: 2,
-      ),
-      arabicAddress: 'arabicAddress',
-      address: 'address',
-      country: 'place.country!',
-      city: 'place.administrativeArea ?? place.locality!',
-      isoCode: 'place.isoCountryCode!',
-    );
     try {
       await GeocodingPlatform.instance!.setLocaleIdentifier('en');
 

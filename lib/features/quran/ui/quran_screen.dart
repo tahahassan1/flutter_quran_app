@@ -60,7 +60,8 @@ class _QuranScreenState extends State<QuranScreen> {
       );
     }
     return Scaffold(
-      backgroundColor: context.primaryColor,
+      backgroundColor:
+          context.isLandscape ? context.onPrimary : context.primaryColor,
       resizeToAvoidBottomInset: false,
       body: MultiBlocProvider(
         providers: [
@@ -74,13 +75,7 @@ class _QuranScreenState extends State<QuranScreen> {
           ),
           BlocProvider(create: (context) => VersePlayerCubit()),
         ],
-        child: const SafeArea(
-          top: true,
-          left: false,
-          right: false,
-          bottom: false,
-          child: QuranScreenBody(),
-        ),
+        child: const QuranScreenBody(),
       ),
     );
   }

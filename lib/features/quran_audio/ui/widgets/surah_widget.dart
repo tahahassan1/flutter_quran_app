@@ -36,8 +36,8 @@ class SurahWidget extends StatelessWidget {
           children: [
             Container(
               padding: const EdgeInsets.only(top: 8),
-              width: 40.w,
-              height: 40.h,
+              width: context.isLandscape ? 80.h : 40.w,
+              height: context.isLandscape ? 80.h : 40.w,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(AppAssets.imagesVerseFrame),

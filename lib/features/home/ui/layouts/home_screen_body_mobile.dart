@@ -25,16 +25,19 @@ class HomeScreenBodyMobile extends StatelessWidget {
         ),
         Positioned.fill(
           top: 160.h,
-          child: CustomScrollView(
-            physics: const ClampingScrollPhysics(),
-            slivers: [
-              SliverPadding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: context.screenWidth * .1,
+          child: SafeArea(
+            top: false,
+            child: CustomScrollView(
+              physics: const ClampingScrollPhysics(),
+              slivers: [
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: context.screenWidth * .1,
+                  ),
+                  sliver: const MobileHomeSectionsList(),
                 ),
-                sliver: const MobileHomeSectionsList(),
-              ),
-            ],
+              ],
+            ),
           ),
         )
       ],

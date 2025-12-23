@@ -57,7 +57,7 @@ class AppStyles {
 
   static TextStyle style28l = GoogleFonts.almarai(
     fontSize: 28.sp,
-    color: AppColors.white,
+    color: Colors.white,
     fontWeight: FontWeight.w800,
   );
 
@@ -94,6 +94,11 @@ class AppStyles {
     fontSize: 14.sp,
     color: Colors.white,
     fontWeight: FontWeight.bold,
+  );
+  static TextStyle style18harmattan = TextStyle(
+    fontFamily: AppConsts.harmattan,
+    fontSize: 18.sp,
+    color: Colors.white,
   );
   static TextStyle style20harmattan = TextStyle(
     fontFamily: AppConsts.harmattan,

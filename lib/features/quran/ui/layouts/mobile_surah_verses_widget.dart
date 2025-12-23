@@ -161,12 +161,13 @@ class _MobileSurahVersesWidgetState extends State<MobileSurahVersesWidget> {
                 });
                 final future = showModalBottomSheet(
                   barrierColor: Colors.black38,
+                  useSafeArea: true,
                   context: context,
                   backgroundColor: Colors.transparent,
                   builder: (context) {
                     return BlocProvider.value(
                       value: cubit,
-                      child: const VerseBottomSheet(),
+                      child: const SafeArea(child: VerseBottomSheet()),
                     );
                   },
                 );

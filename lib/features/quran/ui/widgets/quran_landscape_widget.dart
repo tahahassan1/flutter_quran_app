@@ -13,10 +13,6 @@ class LandscapeQuranWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      right: true,
-      left: true,
-      top: false,
-      bottom: false,
       child: Container(
         width: context.screenWidth,
         height: context.screenHeight,
