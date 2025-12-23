@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 extension WidgetsExt on Widget {
   Widget withSafeArea() {
     return SafeArea(
-      top: Platform.isIOS,
+      top:false,
       bottom: false,
       right: false,
       left: false,

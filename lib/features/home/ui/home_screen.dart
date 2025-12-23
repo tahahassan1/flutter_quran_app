@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_quran_app/core/helpers/app_initializer.dart';
 import 'package:flutter_quran_app/core/helpers/extensions/widgets_ext.dart';
 import 'package:flutter_quran_app/features/home/ui/layouts/home_screen_body_mobile.dart';
@@ -14,8 +15,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  
   @override
   void initState() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
     Future.delayed(const Duration(milliseconds: 600), () {
       AppInitializer.homeInit();
     });
