@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_quran_app/core/helpers/app_initializer.dart';
 import 'package:flutter_quran_app/features/home/ui/layouts/home_screen_body_mobile.dart';
 
@@ -18,22 +15,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  
   @override
   void initState() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    _removeSplash();
+
     Future.delayed(const Duration(milliseconds: 600), () {
       AppInitializer.homeInit();
     });
-
     super.initState();
-  }
-
-  Future<void> _removeSplash() async {
-    if (Platform.isIOS) {
-      await Future.delayed(const Duration(milliseconds: 2400));
-      FlutterNativeSplash.remove();
-    }
   }
 
   @override
