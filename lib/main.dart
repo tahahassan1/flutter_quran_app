@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quran_app/core/helpers/app_initializer.dart';
 import 'package:flutter_quran_app/core/theme/theme_manager/theme_cubit.dart';
@@ -22,7 +21,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppInitializer.mainInit();
   final bool showCustomSplash = await isAndroid12Plus();
-
+  await Future.delayed(const Duration(milliseconds: 1));
   runApp(
     MultiBlocProvider(
       providers: [
