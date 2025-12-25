@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quran_app/core/helpers/app_initializer.dart';
@@ -18,10 +19,15 @@ Future<bool> isAndroid12Plus() async {
 }
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  
+  if (Platform.isIOS) {
+    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  }
+
   await AppInitializer.mainInit();
   final bool showCustomSplash = await isAndroid12Plus();
-  await Future.delayed(const Duration(milliseconds: 1));
+
   runApp(
     MultiBlocProvider(
       providers: [
